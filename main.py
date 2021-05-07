@@ -1,3 +1,4 @@
+'''
 if __name__ == '__main__':
     from tkinter import *
     from PIL import ImageTk, Image
@@ -9,6 +10,7 @@ if __name__ == '__main__':
     from open_about import *
 
     # Root Window
+
     root = Tk()
     root.title(" Image Noise Reduction ")
     root.iconbitmap("Recources/Photos.ico")
@@ -137,3 +139,4 @@ if __name__ == '__main__':
 
 
     root.mainloop()
+    '''
