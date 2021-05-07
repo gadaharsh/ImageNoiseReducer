@@ -7,11 +7,11 @@ import os
 
 def rotate_right():
     global root2
-    global path1
+    global path2
     global result_image
     global result_image_label
 
-    to_rotate= cv2.imread(path1)
+    to_rotate= cv2.imread(path2)
 
     path2_dir = filedialog.askdirectory(initialdir="..\OSPTL_MiniProject",
                                         title="Select A Directory To Save Image")
@@ -19,7 +19,7 @@ def rotate_right():
     path = path2_dir
 
     # Getting name of img file
-    head, tail = os.path.split(path1)
+    head, tail = os.path.split(path2)
     name, extension = tail.split(".")
 
     right_rotated = cv2.rotate(to_rotate, cv2.ROTATE_90_CLOCKWISE)
@@ -30,15 +30,15 @@ def rotate_right():
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
     result_image_label = Label(rotate_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
-
+    messagebox.showinfo("Image Rotate", "Successful Save and Right Rotation of Image!")
 
 def rotate_left():
     global root2
-    global path1
+    global path2
     global result_image
     global result_image_label
 
-    to_rotate = cv2.imread(path1)
+    to_rotate = cv2.imread(path2)
 
     path2_dir = filedialog.askdirectory(initialdir="..\OSPTL_MiniProject",
                                         title="Select A Directory To Save Image")
@@ -46,7 +46,7 @@ def rotate_left():
     path = path2_dir
 
     # Getting name of img file
-    head, tail = os.path.split(path1)
+    head, tail = os.path.split(path2)
     name, extension = tail.split(".")
 
     left_rotated = cv2.rotate(to_rotate, cv2.ROTATE_90_COUNTERCLOCKWISE)
@@ -57,7 +57,7 @@ def rotate_left():
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
     result_image_label = Label(rotate_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
-
+    messagebox.showinfo("Image Rotate", "Successful Save and Left Rotation of Image!")
 
 def clear():
     rotate_left_button.place_forget()
@@ -107,14 +107,14 @@ def open_file():
     global clear_image
     global clear_button
     global frame_left
-    global path1
+    global path2
     global rotate_right_img
     global rotate_left_img
     global rotate_right_button
     global rotate_left_button
 
 
-    path1 = filedialog.askopenfilename(initialdir="..\OSPTL_MiniProject", title="Select A File",
+    path2 = filedialog.askopenfilename(initialdir="..\OSPTL_MiniProject", title="Select A File",
                                        filetypes=(("All files", "*.*"), (" png files", "*.png"),
                                                           ("jpg files", "*.jpg"),))
 
@@ -122,10 +122,10 @@ def open_file():
     entry = StringVar()
     select_entry = Entry(frame_left, textvariable=entry, width=50, borderwidth=0)
     select_entry.grid(row=0, column=1)
-    entry.set(path1)
+    entry.set(path2)
 
     # Setting the image and its label
-    my_img = ImageTk.PhotoImage(Image.open(path1))
+    my_img = ImageTk.PhotoImage(Image.open(path2))
     my_img_label = Label(rotate_canvas, image=my_img)
     my_img_label.place(x=65, y=200)
 

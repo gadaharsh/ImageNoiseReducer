@@ -33,7 +33,7 @@ def reduce_noise():
     result_image_label = Label(noise_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
     # result_image_label.grid(row=1, column=0, pady=10)
-
+    messagebox.showinfo("Image Noise Reducer", "Successful Save And Noise Reduction In Image!")
 
 def clear():
 
