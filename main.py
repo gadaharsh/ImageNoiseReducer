@@ -67,7 +67,7 @@ if __name__ == '__main__':
         global select_entry
         global reduce_img
         global clear_image
-        global reduce_button
+        global blur_button
         global clear_button
         global result_image_label
 
@@ -89,8 +89,8 @@ if __name__ == '__main__':
 
         # Reduce Button
         reduce_img = ImageTk.PhotoImage(Image.open("Recources/arrow.png"))
-        reduce_button = Button(root, image=reduce_img, borderwidth=0, command=reduce_noise)
-        reduce_button.place(x=480, y=350)
+        blur_button = Button(root, image=reduce_img, borderwidth=0, command=reduce_noise)
+        blur_button.place(x=480, y=350)
 
         # Clear Button
         clear_image = ImageTk.PhotoImage(Image.open("Recources/Clear.png"))
@@ -105,7 +105,7 @@ if __name__ == '__main__':
 
     # Clear function
     def clear():
-        reduce_button.place_forget()
+        blur_button.place_forget()
         select_entry.grid_forget()
         clear_button.place_forget()
         my_img_label.place_forget()

@@ -36,7 +36,7 @@ def reduce_noise():
 
 
 def clear():
-    
+
     reduce_button.place_forget()
     select_entry.grid_forget()
     clear_button.place_forget()
@@ -53,7 +53,7 @@ def noise():
     root1 = Toplevel()
     root1.title(" Image Noise Reduction ")
     root1.iconbitmap("Recources/Photos.ico")
-    #root1.geometry("1000x700")
+    #root4.geometry("1000x700")
 
     noise_bg = ImageTk.PhotoImage(Image.open("Recources/root1_bg.png"))
 
@@ -74,7 +74,7 @@ def noise():
     select_button = Button(frame_left, text="Select an Image", command=open_file)
     select_button.grid(row=0, column=0)
 
-    #root1.mainloop()
+    #root4.mainloop()
 
 def open_file():
     global root1
