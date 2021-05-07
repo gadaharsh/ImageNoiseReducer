@@ -46,6 +46,7 @@ if __name__ == '__main__':
     blur_button = Button(home, image=blur, borderwidth=0, command=blur_fn)
     blur_button.place(x=705, y=445)
 
+    messagebox.showinfo("Home", "Welcome Here!")
 
     home.mainloop()
 

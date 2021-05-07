@@ -7,11 +7,11 @@ import os
 
 def horizontalflip():
     global root3
-    global path1
+    global path3
     global result_image
     global result_image_label
 
-    to_flip = cv2.imread(path1)
+    to_flip = cv2.imread(path3)
 
     path2_dir = filedialog.askdirectory(initialdir="..\OSPTL_MiniProject",
                                         title="Select A Directory To Save Image")
@@ -19,7 +19,7 @@ def horizontalflip():
     path = path2_dir
 
     # Getting name of img file
-    head, tail = os.path.split(path1)
+    head, tail = os.path.split(path3)
     name, extension = tail.split(".")
 
     # img_flip_ud = cv2.flip(img, 1)
@@ -31,14 +31,15 @@ def horizontalflip():
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
     result_image_label = Label(flip_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
+    messagebox.showinfo("Image Flip", "Successful Save and Horizontal Flip of Image!")
 
 def verticalflip():
     global root3
-    global path1
+    global path3
     global result_image
     global result_image_label
 
-    to_flip = cv2.imread(path1)
+    to_flip = cv2.imread(path3)
 
     path2_dir = filedialog.askdirectory(initialdir="..\OSPTL_MiniProject",
                                         title="Select A Directory To Save Image")
@@ -46,7 +47,7 @@ def verticalflip():
     path = path2_dir
 
     # Getting name of img file
-    head, tail = os.path.split(path1)
+    head, tail = os.path.split(path3)
     name, extension = tail.split(".")
 
     # img_flip_ud = cv2.flip(img, 0)
@@ -59,7 +60,7 @@ def verticalflip():
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
     result_image_label = Label(flip_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
-
+    messagebox.showinfo("Image Flip", "Successful Save and Vertical Flip of Image!")
 
 def clear():
     flip_h_button.place_forget()
@@ -109,14 +110,14 @@ def open_file():
     global clear_image
     global clear_button
     global frame_left
-    global path1
+    global path3
     global flip_h_img
     global flip_v_img
     global flip_h_button
     global flip_v_button
 
 
-    path1 = filedialog.askopenfilename(initialdir="..\OSPTL_MiniProject", title="Select A File",
+    path3 = filedialog.askopenfilename(initialdir="..\OSPTL_MiniProject", title="Select A File",
                                        filetypes=(("All files", "*.*"), (" png files", "*.png"),
                                                           ("jpg files", "*.jpg"),))
 
@@ -124,10 +125,10 @@ def open_file():
     entry = StringVar()
     select_entry = Entry(frame_left, textvariable=entry, width=50, borderwidth=0)
     select_entry.grid(row=0, column=1)
-    entry.set(path1)
+    entry.set(path3)
 
     # Setting the image and its label
-    my_img = ImageTk.PhotoImage(Image.open(path1))
+    my_img = ImageTk.PhotoImage(Image.open(path3))
     my_img_label = Label(flip_canvas, image=my_img)
     my_img_label.place(x=65, y=200)
 

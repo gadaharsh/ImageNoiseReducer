@@ -34,6 +34,7 @@ def imageblur():
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
     result_image_label = Label(blur_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
+    messagebox.showinfo("Image Blur", "Successful Save and Blurring of Image!")
 
 def clear():
 
