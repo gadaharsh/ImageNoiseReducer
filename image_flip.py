@@ -5,13 +5,13 @@ from tkinter import messagebox
 import cv2
 import os
 
-def rotate_right():
-    global root2
+def horizontalflip():
+    global root3
     global path1
     global result_image
     global result_image_label
 
-    to_rotate= cv2.imread(path1)
+    to_flip = cv2.imread(path1)
 
     path2_dir = filedialog.askdirectory(initialdir="..\OSPTL_MiniProject",
                                         title="Select A Directory To Save Image")
@@ -22,23 +22,23 @@ def rotate_right():
     head, tail = os.path.split(path1)
     name, extension = tail.split(".")
 
-    right_rotated = cv2.rotate(to_rotate, cv2.ROTATE_90_CLOCKWISE)
-    cv2.imwrite(os.path.join(path, name + "_right_rotated.png"), right_rotated)
+    # img_flip_ud = cv2.flip(img, 1)
+    h_flipped = cv2.flip(to_flip, 1)
+    cv2.imwrite(os.path.join(path, name + "_hflipped.png"), h_flipped)
 
-    new_name = name + "_right_rotated.png"
+    new_name = name + "_hflipped.png"
 
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
-    result_image_label = Label(rotate_canvas, image=result_image)
+    result_image_label = Label(flip_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
 
-
-def rotate_left():
-    global root2
+def verticalflip():
+    global root3
     global path1
     global result_image
     global result_image_label
 
-    to_rotate = cv2.imread(path1)
+    to_flip = cv2.imread(path1)
 
     path2_dir = filedialog.askdirectory(initialdir="..\OSPTL_MiniProject",
                                         title="Select A Directory To Save Image")
@@ -49,58 +49,60 @@ def rotate_left():
     head, tail = os.path.split(path1)
     name, extension = tail.split(".")
 
-    left_rotated = cv2.rotate(to_rotate, cv2.ROTATE_90_COUNTERCLOCKWISE)
-    cv2.imwrite(os.path.join(path, name + "_left_rotated.png"), left_rotated)
+    # img_flip_ud = cv2.flip(img, 0)
+    v_flipped = cv2.flip(to_flip, 0)
 
-    new_name = name + "_left_rotated.png"
+    cv2.imwrite(os.path.join(path, name + "_vflipped.png"), v_flipped)
+
+    new_name = name + "_vflipped.png"
 
     result_image = ImageTk.PhotoImage(Image.open(path + "/" + new_name))
-    result_image_label = Label(rotate_canvas, image=result_image)
+    result_image_label = Label(flip_canvas, image=result_image)
     result_image_label.place(x=605, y=200)
 
 
 def clear():
-    rotate_left_button.place_forget()
-    rotate_right_button.place_forget()
+    flip_h_button.place_forget()
+    flip_v_button.place_forget()
     select_entry.grid_forget()
     clear_button.place_forget()
     my_img_label.place_forget()
     result_image_label.place_forget()
 
-def rotate_fn():
+def flip_fn():
     global rotate_bg
     global back_image
     global about_bg
     global frame_left
-    global rotate_canvas
+    global flip_canvas
 
-    root2 = Toplevel()
-    root2.title(" Image Rotation ")
-    root2.iconbitmap("Recources/Photos.ico")
+    root3 = Toplevel()
+    root3.title(" Image Flip ")
+    root3.iconbitmap("Recources/Photos.ico")
 
-    rotate_bg = ImageTk.PhotoImage(Image.open("Recources/root2_bg.png"))
+    flip_bg = ImageTk.PhotoImage(Image.open("Recources/root3_bg.png"))
 
-    rotate_canvas = Canvas(root2, width=1000, height=700)
-    rotate_canvas.pack(fill="both", expand=True)
-    rotate_canvas.create_image(0, 0, image=rotate_bg, anchor="nw")
+    flip_canvas = Canvas(root3, width=1000, height=700)
+    flip_canvas.pack(fill="both", expand=True)
+    flip_canvas.create_image(0, 0, image=flip_bg, anchor="nw")
 
     back_image = ImageTk.PhotoImage(Image.open("Recources/back.png"))
-    back_button = Button(root2, image=back_image, borderwidth=0, command=root2.destroy)
+    back_button = Button(root3, image=back_image, borderwidth=0, command=root3.destroy)
     back_button.place(x=10, y=10)
 
     # Frame Creation
 
-    frame_left = Frame(root2, width=421, height=400)
+    frame_left = Frame(root3, width=421, height=400)
     frame_left.place(x=30, y=160)
 
     # File Selection In Frame
     select_button = Button(frame_left, text="Select an Image", command=open_file)
     select_button.grid(row=0, column=0)
 
-    root2.mainloop()
+    root3.mainloop()
 
 def open_file():
-    global root2
+    global root3
     global my_img
     global my_img_label
     global select_entry
@@ -108,10 +110,10 @@ def open_file():
     global clear_button
     global frame_left
     global path1
-    global rotate_right_img
-    global rotate_left_img
-    global rotate_right_button
-    global rotate_left_button
+    global flip_h_img
+    global flip_v_img
+    global flip_h_button
+    global flip_v_button
 
 
     path1 = filedialog.askopenfilename(initialdir="..\OSPTL_MiniProject", title="Select A File",
@@ -126,20 +128,20 @@ def open_file():
 
     # Setting the image and its label
     my_img = ImageTk.PhotoImage(Image.open(path1))
-    my_img_label = Label(rotate_canvas, image=my_img)
+    my_img_label = Label(flip_canvas, image=my_img)
     my_img_label.place(x=65, y=200)
 
     # Convert Button1-clockwise rotate
-    rotate_right_img = ImageTk.PhotoImage(Image.open("Recources/rotate_right.png"))
-    rotate_right_button = Button(rotate_canvas, image=rotate_right_img, borderwidth=0, command=rotate_right)
-    rotate_right_button.place(x=480, y=300)
+    flip_h_img = ImageTk.PhotoImage(Image.open("Recources/h_flip.png"))
+    flip_h_button = Button(flip_canvas, image=flip_h_img, borderwidth=0, command=horizontalflip)
+    flip_h_button.place(x=480, y=300)
 
     # Convert Button2-anticlockwise rotate
-    rotate_left_img = ImageTk.PhotoImage(Image.open("Recources/rotate_left.png"))
-    rotate_left_button = Button(rotate_canvas, image=rotate_left_img, borderwidth=0, command=rotate_left)
-    rotate_left_button.place(x=480, y=470)
+    flip_v_img = ImageTk.PhotoImage(Image.open("Recources/v_flip.png"))
+    flip_v_button = Button(flip_canvas, image=flip_v_img, borderwidth=0, command=verticalflip)
+    flip_v_button.place(x=480, y=470)
 
     # Clear Button
     clear_image = ImageTk.PhotoImage(Image.open("Recources/Clear.png"))
-    clear_button = Button(rotate_canvas, image=clear_image, command=clear, borderwidth=0)
+    clear_button = Button(flip_canvas, image=clear_image, command=clear, borderwidth=0)
     clear_button.place(x=470, y=160)

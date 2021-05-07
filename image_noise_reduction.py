@@ -36,8 +36,7 @@ def reduce_noise():
 
 
 def clear():
-
-
+    
     reduce_button.place_forget()
     select_entry.grid_forget()
     clear_button.place_forget()

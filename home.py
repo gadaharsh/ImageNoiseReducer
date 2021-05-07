@@ -3,6 +3,7 @@ if __name__ == '__main__':
     from open_about import *
     from image_noise_reduction import *
     from image_rotate import *
+    from image_flip import *
 
     home = Tk()
     home.title(" Home : Image Noise Reduction ")
@@ -36,7 +37,7 @@ if __name__ == '__main__':
 
     # Image Flip
     flip = ImageTk.PhotoImage(Image.open("Recources/flip.png"))
-    flip_button = Button(home, image=flip, borderwidth=0, )
+    flip_button = Button(home, image=flip, borderwidth=0, command=flip_fn )
     flip_button.place(x=405, y=445)
 
     # Image Blur
