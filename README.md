@@ -9,9 +9,9 @@ Made BY
 - Canva for UI
 
 ## Component Diagram
-![](./Recourses/component_dia.PNG)
+![component_dia](./Recourses/component_dia.PNG)
 
 ## User Interface 
-![](./Recourses/home_ui.PNG)
+![home_ui](./Recourses/home_ui.PNG)
 
 ## OSTPL Miniproject
